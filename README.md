@@ -11,7 +11,7 @@ Uploaded files will be public and will be deleted regularly!
 ```
 docker run -p <local port>:8501 f1nnm/hyperviz:latest
 ```
-It's accesible under 0.0.0.0:<local port>
+It's accesible under `https://0.0.0.0:<local port>`
 
 ## Run from source:
 1. Clone this repo.
