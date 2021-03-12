@@ -2,7 +2,10 @@
 
 This app allows you to easily analyse hyperparameters with visual tools. No more looking at endless rows of numbers!
 
-## Demo-Version: https://hyperviz.mfinn.de
+## Demo-Version
+Acces the demo version here: https://hyperviz.mfinn.de
+
+Uploaded files will be public and will be deleted regularly!
 
 ## Run your own version with Docker:
 ```
