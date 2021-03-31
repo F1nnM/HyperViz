@@ -9,4 +9,4 @@ ADD . /app/
 
 EXPOSE 8501
 
-ENTRYPOINT [ "streamlit", "run", "app.py" ]
+ENTRYPOINT [ "streamlit", "run", "app.py", "--server.enableCORS", "false" ]

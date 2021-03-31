@@ -7,6 +7,10 @@ Acces the demo version here: https://hyperviz.mfinn.de
 
 Uploaded files will be public and will be deleted regularly!
 
+## GridsearchCV example:
+
+For a little example on how to use GridsearchCV and how to generate a .csv file from that, look [here](https://github.com/F1nnM/HyperViz/blob/main/example_titanic_rf.py).
+
 ## Run your own version with Docker:
 ```
 docker run -p <local port>:8501 f1nnm/hyperviz:latest

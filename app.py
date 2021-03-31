@@ -3,7 +3,6 @@ import os
 
 import hiplot as hp
 import pandas as pd
-from pkg_resources import safe_extra
 import streamlit as st
 
 import data_management as dm
@@ -33,13 +32,14 @@ input[type="radio"] + div {
 </style>''', unsafe_allow_html=True)
 
 @st.cache(allow_output_mutation=True, ttl=3600)
-def get_cached_experiment(df):
+def get_cached_experiment(df: pd.DataFrame):
     exp = hp.Experiment.from_dataframe(df)
     exp._compress = True
+    exp.colorby = df.columns[0]
     return exp.to_streamlit(key='hiplot')
 
 @st.cache(allow_output_mutation=True, ttl=3600)
-def calc_shap_summary_plot(df, column_to_optimize, param_columns, cmap):
+def calc_shap_summary_plot(df: pd.DataFrame, column_to_optimize, param_columns, cmap):
 
     df = df[[column_to_optimize]+param_columns]
     encoder = {col: {(val if val == val else 'nan'): encoded for encoded, val in enumerate(pd.unique(df[col]))} for col in param_columns}
@@ -92,7 +92,7 @@ def create_legend(encoder, cmap):
 
     return pd.DataFrame.from_dict(legend).style.apply(color_table, axis=1)
 
-def shap_viz(df):
+def shap_viz(df: pd.DataFrame):
     with st.beta_expander('How does this work?'):
         st.write('Your data is used to train a simple __xgboost-model__, with the "column to optimize" as label. This model is trying to __predict the performance__ of your model, based on the parameters. After the training is complete, the __SHAP values__ are calculated, which are used to explain the behaviour of this xgboost model. So, as a result, the SHAP values can be used to __explain the influence of a parameter__ on the performance.')
     
