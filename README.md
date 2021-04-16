@@ -3,7 +3,7 @@
 This app allows you to easily analyse hyperparameters with visual tools. No more looking at endless rows of numbers!
 
 ## Demo-Version
-Acces the demo version here: https://hyperviz.mfinn.de
+The demo version is available as an official streamlit sharing app [here](https://share.streamlit.io/f1nnm/hyperviz/main/app.py). 
 
 Uploaded files will be public and will be deleted regularly!
 
