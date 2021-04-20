@@ -1,4 +1,4 @@
-streamlit==0.79.0
+streamlit==0.80.0
 hiplot==0.1.23
 pandas==1.2.3
 shap==0.38.1
