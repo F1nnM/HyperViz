@@ -5,7 +5,7 @@ This app allows you to easily analyse hyperparameters with visual tools. No more
 ## Demo-Version
 The demo version is available as an official streamlit sharing app [here](https://share.streamlit.io/f1nnm/hyperviz/main/app.py). 
 
-Uploaded files will be public and will be deleted regularly!
+Uploaded files will be public and might get deleted without warning!
 
 ## GridsearchCV example:
 
