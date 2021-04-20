@@ -19,17 +19,17 @@ features=data.iloc[:,1:]
 
 # scale or hot encode features
 
-features_cat=features.select_dtypes(exclude='number')
-features_cat=pd.get_dummies(features_cat).reset_index(drop=True)
+features_categrorical=features.select_dtypes(exclude='number')
+features_categrorical=pd.get_dummies(features_categrorical).reset_index(drop=True)
 
-features_num=features.select_dtypes(include='number') ## Note: This will also scale bool variables!
-features_num_columns=list(features_num.columns)
+features_numeric=features.select_dtypes(include='number') ## Note: This will also scale bool variables!
+features_num_columns=list(features_numeric.columns)
 
 scaler=StandardScaler()
-features_num=scaler.fit_transform(features_num)
-features_num=pd.DataFrame(features_num, columns=features_num_columns).reset_index(drop=True)
+features_numeric=scaler.fit_transform(features_numeric)
+features_numeric=pd.DataFrame(features_numeric, columns=features_num_columns).reset_index(drop=True)
 
-features= pd.concat([features_num,features_cat], axis=1)
+features= pd.concat([features_numeric,features_categrorical], axis=1)
 
 #split data and train model
 
