@@ -93,7 +93,7 @@ def create_legend(encoder, cmap):
     return pd.DataFrame.from_dict(legend).style.apply(color_table, axis=1)
 
 def shap_viz(df: pd.DataFrame):
-    with st.beta_expander('How does this work?'):
+    with st.expander('How does this work?'):
         st.write('Your data is used to train a simple __xgboost-model__, with the "column to optimize" as label. This model is trying to __predict the performance__ of your model, based on the parameters. After the training is complete, the __SHAP values__ are calculated, which are used to explain the behaviour of this xgboost model. So, as a result, the SHAP values can be used to __explain the influence of a parameter__ on the performance.')
     
     st.write('#')
@@ -106,7 +106,7 @@ def shap_viz(df: pd.DataFrame):
     if not draw:
         draw = st.button('Draw plot')
     if draw:
-        with st.beta_expander('What can I see here?'):
+        with st.expander('What can I see here?'):
             st.write("For each column you chose above you can see a lot of dots; __one dot for each row__ in your dataset. The __color shows the value__ the dot represents and it's __left-right-position shows the impact__ it has on the selected \"column to optimize\". Underneath is legend to explain, which color stands for which value.")
             st.write("__Example:__ If a parameter only contains two options, you might see a distinct cluster of gray dots and a distinct cluster of black dots. If the gray cluster is further left than the black one, that means that all runs with the \"gray\" value performed worse than the others. Which value that is, can be read from the legend below the plot.")
         cmap = matplotlib.cm.get_cmap('nipy_spectral')
