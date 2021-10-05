@@ -15,7 +15,7 @@ For a little example on how to use GridsearchCV and how to generate a .csv file 
 ```
 docker run -p <local port>:8501 f1nnm/hyperviz:latest
 ```
-It's accesible under `https://0.0.0.0:<local port>`
+It's accessible under `https://0.0.0.0:<local port>`
 
 ## Run from source:
 1. Clone this repo.
