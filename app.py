@@ -31,6 +31,12 @@ input[type="radio"] + div {
 }
 </style>''', unsafe_allow_html=True)
 
+def set_project_cache(project, model):
+    if 'project' not in st.session_state:
+        st.session_state.project = project
+    if 'model' not in st.session_state:
+        st.session_state.model = model
+
 @st.cache(allow_output_mutation=True, ttl=3600)
 def get_cached_experiment(df: pd.DataFrame):
     exp = hp.Experiment.from_dataframe(df)
@@ -119,11 +125,21 @@ def shap_viz(df: pd.DataFrame):
 def sidebar():
     st.sidebar.write('# Select and filter you\'re data here:')
     models = dm.get_models()
-    project = st.sidebar.selectbox('Select your project', list(models.keys()))
-    if project:
-        models = st.sidebar.multiselect('Select the models to compare:', models[project])
+    project = None
+    if 'model' in st.session_state:
+        project_index = list(models.keys()).index(st.session_state.project)
+        project = st.sidebar.selectbox('Select your project', list(models.keys()), project_index)
+        if project:
+            models = st.sidebar.multiselect('Select the models to compare:', models[project], default=[st.session_state.model])
+    else:
+        project = st.sidebar.selectbox('Select your project', list(models.keys()))
+        if project:
+            models = st.sidebar.multiselect('Select the models to compare:', models[project])
 
     if not models:
+        if 'model' in st.session_state:
+            del st.session_state.model
+            del st.session_state.project
         return 
 
     data = dm.read_files(project, models)
@@ -204,7 +220,8 @@ def center_uploader():
         else:
             with st.spinner('Processing...'):
                 dm.process_data(df, project, model, tag, columns_to_keep)
-            st.write('<meta http-equiv="refresh" content="0">', unsafe_allow_html=True)
+            set_project_cache(project, model)
+            st.experimental_rerun()
 
 def center_delete():
     st.write('## Delete data')
